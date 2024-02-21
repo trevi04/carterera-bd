@@ -67,17 +67,14 @@ class CineController extends Controller
         
     
         // Imprimir los datos para verificar
-        echo "ID Formulario: " . $idform . "<br>";
-        echo "Entradas: " . $entradas2 . "<br>";
+        //echo "ID Formulario: " . $idform . "<br>";
+        //echo "Entradas: " . $entradas2 . "<br>";
         echo "Imagen: " . $imagen->getClientOriginalName() . "<br>";
-        
-        $imagen->store('public',$imagen->getClientOriginalName());
+        $nombreImagen = $imagen->getClientOriginalName();
+        $imagen->storeAs('public', $nombreImagen);
         //echo "ID Formulario: " . $imagen . "<br>";
-        // Llamar al procedimiento almacenado utilizando consultas SQL
-         //DB::statement('CALL Cine_ventas(?, ?)', array($idform, $entradas2));
-        
-        // Redirigir a la página de inicio u otra vista
-        //return redirect()->route("Cine.index")->with("Success", "El proceso de guardado se ha iniciado correctamente.");
+        DB::statement('CALL add_peli(?, ? , ?)', array($idform, $entradas2,$nombreImagen));
+        return redirect()->route("Cine.index")->with("Success", "El proceso de guardado se ha iniciado correctamente.");
     }
     
 

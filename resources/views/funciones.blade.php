@@ -37,7 +37,7 @@
 
 <div class="form-funciones-cine">
 
-    <form action="{{ route('Cine.stori') }}" method="POST">
+    <form action="{{ route('Cine.stori') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <h1> Agregar Sala</h1> <br>
         <h3> Nombre <input type="text" name="nombre" id="nombre"> </h3>

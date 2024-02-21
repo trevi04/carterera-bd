@@ -63,12 +63,16 @@ class CineController extends Controller
         // Obtener los datos del formulario
         $idform = $request2->input('nombre');
         $entradas2 = $request2->input('Precio');
-        $imagen = $request2->input('imagen');
+        $imagen = $request2->file('imagen');
+        
     
         // Imprimir los datos para verificar
         echo "ID Formulario: " . $idform . "<br>";
         echo "Entradas: " . $entradas2 . "<br>";
-        echo "ID Formulario: " . $imagen . "<br>";
+        echo "Imagen: " . $imagen->getClientOriginalName() . "<br>";
+        
+        $imagen->store('public',$imagen->getClientOriginalName());
+        //echo "ID Formulario: " . $imagen . "<br>";
         // Llamar al procedimiento almacenado utilizando consultas SQL
          //DB::statement('CALL Cine_ventas(?, ?)', array($idform, $entradas2));
         

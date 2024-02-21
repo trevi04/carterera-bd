@@ -20,6 +20,14 @@ class CineController extends Controller
     
     }
 
+    public function sala()
+    {
+       
+        //pagina inicio
+        return view('funciones');
+    
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -47,6 +55,25 @@ class CineController extends Controller
         
         // Redirigir a la página de inicio u otra vista
         return redirect()->route("Cine.index")->with("Success", "El proceso de guardado se ha iniciado correctamente.");
+    }
+
+
+    public function stori(Request $request2)
+    {
+        // Obtener los datos del formulario
+        $idform = $request2->input('nombre');
+        $entradas2 = $request2->input('Precio');
+        $imagen = $request2->input('imagen');
+    
+        // Imprimir los datos para verificar
+        echo "ID Formulario: " . $idform . "<br>";
+        echo "Entradas: " . $entradas2 . "<br>";
+        echo "ID Formulario: " . $imagen . "<br>";
+        // Llamar al procedimiento almacenado utilizando consultas SQL
+         //DB::statement('CALL Cine_ventas(?, ?)', array($idform, $entradas2));
+        
+        // Redirigir a la página de inicio u otra vista
+        //return redirect()->route("Cine.index")->with("Success", "El proceso de guardado se ha iniciado correctamente.");
     }
     
 

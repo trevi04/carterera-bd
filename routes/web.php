@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/cartelera2', [CineController::class, 'index'])->name('Cine.index');
-Route::get('/Cartelera', [CineController::class, 'create'])->name('Cine.create');
+Route::get('/', [CineController::class, 'index'])->name('Cine.index');
+Route::get('/funciones', [CineController::class, 'sala'])->name('Cine.sala');
+
 Route::post('/store', [CineController::class, 'store'])->name('Cine.store');
+Route::post('/stori', [CineController::class, 'stori'])->name('Cine.stori');

@@ -17,4 +17,4 @@ Route::get('/', [CineController::class, 'index'])->name('Cine.index');
 Route::get('/funciones', [CineController::class, 'sala'])->name('Cine.sala');
 
 Route::post('/store', [CineController::class, 'store'])->name('Cine.store');
-Route::post('/agregar', [CineController::class, 'agregar'])->name('Cine.agregar'); 
+Route::post('/agregar', [CineController::class, 'agregar'])->name('Cine.agregar');  

@@ -1,4 +1,4 @@
-@extends('layout/plantilla') 
+ 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -190,24 +190,24 @@ function calcular() {
         <br>
         <div class="container-cartera">  
     <div class="row row-cols-4"  >
-        @foreach ($datos as $item)
-        <button type="button" class="btn btn-success buttona" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="mostrar('{{ $item->Nombre }}', '{{ $item->id }}', '{{ $item->precio }}')" style="background-color: rgba(2, 1, 57 ,.8)" >
+        <?php $__currentLoopData = $datos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <button type="button" class="btn btn-success buttona" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="mostrar('<?php echo e($item->Nombre); ?>', '<?php echo e($item->id); ?>', '<?php echo e($item->precio); ?>')" style="background-color: rgba(2, 1, 57 ,.8)" >
 
         <div class="col card-margin" >
             <div class="card text-bg">
-                        <img src="{{ asset($item->Imagen) }}" class="card-img-top" alt="{{ $item->Nombre }}">
+                        <img src="<?php echo e(asset($item->Imagen)); ?>" class="card-img-top" alt="<?php echo e($item->Nombre); ?>">
                         <div class="card-body">
                             <h1>Pelicula</h1>
-                            <h5 class="card-title" name="nombre1">{{ $item->Nombre }}</h5>
+                            <h5 class="card-title" name="nombre1"><?php echo e($item->Nombre); ?></h5>
                             <p class="card-text"> 
                             <h1>Precio</h1>
-                                <strong name="precio1" >{{ $item->precio }}</strong><br>
+                                <strong name="precio1" ><?php echo e($item->precio); ?></strong><br>
                             </p>
                         </div>
              </div>
         </div>
                  </button>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 
             </div>
         </div>
@@ -252,8 +252,8 @@ function validarEntradas() {
     
 
 
-<form action="{{ route('Cine.store') }}" method="POST">
-  @csrf
+<form action="<?php echo e(route('Cine.store')); ?>" method="POST">
+  <?php echo csrf_field(); ?>
           <input type="text" id="n1" name="n1" class="invisible">
           <input type="text" id="entradas2" name="entradas2" class="invisible">
           <button type="submit" >Guardar</button>
@@ -269,3 +269,5 @@ function validarEntradas() {
   
 </body>
 </html>
+
+<?php echo $__env->make('layout/plantilla', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\cine-ubam\resources\views/index.blade.php ENDPATH**/ ?>

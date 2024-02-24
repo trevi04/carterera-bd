@@ -95,8 +95,8 @@ function calcular() {
  
 
   <div class="container">
-    <form action="{{ route('Cine.agregar') }}" method="POST" enctype="multipart/form-data">
-      @csrf
+    <form action="<?php echo e(route('Cine.agregar')); ?>" method="POST" enctype="multipart/form-data">
+      <?php echo csrf_field(); ?>
       <h1>Agregar Película</h1>
       <h3>Nombre <input type="text" name="nombre" id="nombre"></h3>
       <h3>Precio <input type="text" name="Precio" id="Precio" oninput="validarPrecio()"></h3>
@@ -129,4 +129,4 @@ function validarPrecio() {
       }
       reader.readAsDataURL(event.target.files[0]);
     }
-  </script>
+  </script><?php /**PATH C:\xampp\htdocs\cine-ubam\resources\views/funciones.blade.php ENDPATH**/ ?>

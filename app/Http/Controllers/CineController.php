@@ -41,39 +41,30 @@ class CineController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        // Obtener los datos del formulario
+    { 
         $idform = $request->input('idform');
         $entradas2 = $request->input('entradas2');
-    
-        // Imprimir los datos para verificar
+     
         echo "ID Formulario: " . $idform . "<br>";
         echo "Entradas: " . $entradas2 . "<br>";
-        
-        // Llamar al procedimiento almacenado utilizando consultas SQL
-         DB::statement('CALL Cine_ventas(?, ?)', array($idform, $entradas2));
-        
-        // Redirigir a la página de inicio u otra vista
+         
+         DB::statement('CALL ventas(?, ?)', array($idform, $entradas2));
+         
         return redirect()->route("Cine.index")->with("Success", "El proceso de guardado se ha iniciado correctamente.");
     }
 
 
-    public function stori(Request $request2)
-    {
-        // Obtener los datos del formulario
+    public function agregar(Request $request2)
+    { 
         $idform = $request2->input('nombre');
         $entradas2 = $request2->input('Precio');
         $imagen = $request2->file('imagen');
         
-    
-        // Imprimir los datos para verificar
-        //echo "ID Formulario: " . $idform . "<br>";
-        //echo "Entradas: " . $entradas2 . "<br>";
+     
         echo "Imagen: " . $imagen->getClientOriginalName() . "<br>";
         $nombreImagen = $imagen->getClientOriginalName();
-        $imagen->storeAs('public', $nombreImagen);
-        //echo "ID Formulario: " . $imagen . "<br>";
-        DB::statement('CALL add_peli(?, ? , ?)', array($idform, $entradas2,$nombreImagen));
+        $imagen->storeAs('public', $nombreImagen); 
+        DB::statement('CALL agregarpelicula(?, ? , ?)', array($idform, $entradas2,$nombreImagen));
         return redirect()->route("Cine.index")->with("Success", "El proceso de guardado se ha iniciado correctamente.");
     }
     
